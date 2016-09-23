@@ -1,0 +1,21 @@
+<p>
+  otro works!
+</p>
+
+<ul *ngFor="let alumno of alumnos">
+	<li>{{alumno.id}} -- {{alumno.name}}</li>
+	<li>{{alumno.promedio}}</li>
+	<li>{{alumno.edad}}</li>
+	<li>{{alumno.regular}}</li>
+</ul>
+<br>
+<ul *ngFor="let producto of productos">
+	<li>{{producto.id}} -- {{producto.name}}</li>
+	<li>{{producto.price}}</li>
+	<li>{{producto.stock}}</li>
+	<li>{{producto.description}}</li>
+	<li><img [src]="producto.image"></li>
+	<button (click)="addProduct(producto)">Agregar</button>
+	{{producto.quantity}}
+	<button (click)="removeProduct(producto)">Quitar</button>
+</ul>

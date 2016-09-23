@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HolaAngularComponent } from './hola-angular/hola-angular.component';
+import { OtroComponent } from './otro/otro.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  hola = 'esta  no funca';
 }
