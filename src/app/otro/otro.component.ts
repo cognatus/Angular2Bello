@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Alumno } from './alumno';
 import { ALUMNOS } from './mocks';
-import { Producto } from './producto';
-import { PRODUCTOS } from './productosData';
+import { AlumnoService } from './otro.service';
 
 @Component({
 	selector: 'app-otro',
@@ -11,20 +10,29 @@ import { PRODUCTOS } from './productosData';
 })
 export class OtroComponent implements OnInit {
 
+	constructor (private alumnoService: AlumnoService){}
+
 	alumnos: Alumno[];
-	productos : Producto[];
 
 	ngOnInit() {
+		this.alumnoService.getAlumnos().
+			subscribe(alumnos => this.alumnos = alumnos)
 		this.alumnos = ALUMNOS;
-		this.productos = PRODUCTOS;
 	}
 	
-	addProduct(producto){
-		if(producto.quantity < producto.stock) producto.quantity++;
+	//alumnos
+
+	addFalta(alumno){
+		if(alumno.faltas < 4) alumno.faltas++;
 	}
 
-	removeProduct(producto){
-		if(producto.quantity > 0) producto.quantity--;
+	removeFalta(alumno){
+		if(alumno.faltas > 0) alumno.faltas--;
+	}
+
+	reprobado(alumno){
+		let reprobado;
+		return reprobado = ` ${alumno.name} tiene ${alumno.faltas} faltas`;
 	}
 
 }

@@ -1,0 +1,18 @@
+<p>
+  carrito works!
+</p>
+
+<h3>Total: {{total() | currency: 'EUR':true}}</h3>
+<ul *ngFor="let producto of productos">
+	<li [class.sold_out]="quedan(producto) == 0">{{producto.id}} -- {{producto.name | uppercase}}</li>
+	<li>{{producto.price | currency: 'EUR':true}}</li>
+	<li>{{quedan(producto)}}</li>
+	<li>{{producto.description}}</li>
+	<li class="sold_out" *ngIf="quedan(producto) == 0">SOLD OUT!</li>
+	<li><img [src]="producto.image"></li>
+	<li><h4 *ngIf="producto.quantity > producto.stock">No te pases de verga</h4></li>
+	<li><h4 *ngIf="producto.quantity > 0">{{pedido(producto)}}</h4></li>
+	<button (click)="addProduct(producto)">Agregar</button>
+	<input type="text" [(ngModel)]=producto.quantity>
+	<button (click)="removeProduct(producto)">Quitar</button>
+</ul>

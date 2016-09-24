@@ -7,15 +7,14 @@
 	<li>{{alumno.promedio}}</li>
 	<li>{{alumno.edad}}</li>
 	<li>{{alumno.regular}}</li>
+	<li>{{alumno.faltas}}</li>
+	<li><h4 *ngIf="alumno.faltas > 4">No te pases de verga culero</h4></li>
+	<li><h4 *ngIf="alumno.faltas > 0 && alumno.faltas <= 4">{{reprobado(alumno) | uppercase}}</h4></li>
+	<li><h4 *ngIf="alumno.faltas == 4">Reprobado por HUevon</h4></li>
+
+	<button (click)="addFalta(alumno)">Agregar</button>
+	<input type="text" [(ngModel)]=alumno.faltas>
+	<button (click)="removeFalta(alumno)">Quitar</button>
 </ul>
-<br>
-<ul *ngFor="let producto of productos">
-	<li>{{producto.id}} -- {{producto.name}}</li>
-	<li>{{producto.price}}</li>
-	<li>{{producto.stock}}</li>
-	<li>{{producto.description}}</li>
-	<li><img [src]="producto.image"></li>
-	<button (click)="addProduct(producto)">Agregar</button>
-	{{producto.quantity}}
-	<button (click)="removeProduct(producto)">Quitar</button>
-</ul>
+
+

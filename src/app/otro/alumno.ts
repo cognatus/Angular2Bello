@@ -4,4 +4,5 @@ export class Alumno {
 	promedio: number;
 	edad: number;
 	regular: boolean;
+	faltas: number;
 }
