@@ -6,7 +6,8 @@ import { AlumnoService } from './otro.service';
 @Component({
 	selector: 'app-otro',
 	templateUrl: './otro.component.html',
-	styleUrls: ['./otro.component.css']
+	styleUrls: ['./otro.component.css'],
+	providers: [AlumnoService]
 })
 export class OtroComponent implements OnInit {
 

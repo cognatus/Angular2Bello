@@ -1,0 +1,9 @@
+<h1>
+	Spotify
+</h1>
+
+<input type="text" #searchBox (keyup)="search(searchBox.value)">
+
+<ul>
+	<li *ngFor="let song of songs" (click)="play(song)">{{song.name}}
+</ul>

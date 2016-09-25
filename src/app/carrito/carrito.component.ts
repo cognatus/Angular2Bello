@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from './producto';
 import { PRODUCTOS } from './productosData';
+import { ProductoService } from './carrito.service';
 
 @Component({
-  selector: 'app-carrito',
-  templateUrl: './carrito.component.html',
-  styleUrls: ['./carrito.component.css']
+	selector: 'app-carrito',
+	templateUrl: './carrito.component.html',
+	styleUrls: ['./carrito.component.css'],
+	providers: [ProductoService]
 })
 export class CarritoComponent implements OnInit {
+
+	constructor (private productoService: ProductoService){}
 
 	productos : Producto[];
 
 	ngOnInit() {
+		this.productoService.getProductos().
+			subscribe(productos => this.productos = productos)
 		this.productos = PRODUCTOS;
 	}
 
@@ -32,9 +38,11 @@ export class CarritoComponent implements OnInit {
 	total(){
 		let total = 0;
 		let suma = 0;
-		for(let producto of this.productos){
-			suma = producto.quantity * producto.price;
-			total += suma;
+		if(Array.isArray(this.productos)) {
+			for(let producto of this.productos){
+				suma = producto.quantity * producto.price;
+				total += suma;
+			}
 		}
 		return total;
 	}
